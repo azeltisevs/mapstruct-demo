@@ -8,12 +8,14 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE, // default is IGNORE
 
         // target has field Y, source doesn't have Y
-        unmappedTargetPolicy = ReportingPolicy.WARN, // default is WARN
+        unmappedTargetPolicy = ReportingPolicy.ERROR, // default is WARN
 
         // field Z in target is not of the same type as in source
         typeConversionPolicy = ReportingPolicy.IGNORE, // default is IGNORE
 
-        componentModel = "spring" // default is "default" ¯\_(ツ)_/¯
+        componentModel = "spring", // default is "default" ¯\_(ツ)_/¯
+
+        uses = CommonMappings.class
 )
-public class MapstructConfig {
+public class MapStructConfig {
 }

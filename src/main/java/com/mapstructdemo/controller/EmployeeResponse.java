@@ -8,4 +8,5 @@ public class EmployeeResponse {
     private String fullName;
     private String seniority;
     private String hireDate;
+    private String bambooHrId;
 }
