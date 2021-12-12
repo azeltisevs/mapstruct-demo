@@ -3,10 +3,11 @@ package com.mapstructdemo.mapstruct;
 import com.mapstructdemo.controller.EmployeeResponse;
 import com.mapstructdemo.model.EmployeeEntity;
 import com.mapstructdemo.service.Employee;
+import com.mapstructdemo.service.PictureService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(config = MapStructConfig.class)
+@Mapper(config = MapStructConfig.class, uses = PictureService.class)
 public interface EmployeeMapper {
 
     // To Application-layer from Domain-layer
@@ -15,6 +16,6 @@ public interface EmployeeMapper {
     // To Presentation-layer from Application-layer
     @Mapping(target = "seniority", source = "seniorityLevel.levelName")
     @Mapping(target = "fullName", expression = "java(commonMappings.mapFullName(employee.getName(), employee.getSurname()))")
-    @Mapping(target = "bambooHrId", ignore = true)
+    @Mapping(target = "pictureUrl", source = "employee", qualifiedByName = "employeeToPictureUrl")
     EmployeeResponse map(Employee employee);
 }

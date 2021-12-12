@@ -20,7 +20,7 @@ public class Initializer {
     void init() {
         employeeService.createEmployee("Chuck", "Noland", SENIOR_CONSULTANT);
         employeeService.createEmployee("Marla", "Singer", MANAGING_PRINCIPAL);
-        employeeService.createEmployee("Jordan", "Belfort", PARTNER);
+        employeeService.createEmployee("Thomas", "Anderson", PARTNER);
     }
 
 
