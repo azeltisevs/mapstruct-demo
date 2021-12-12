@@ -6,7 +6,7 @@ import com.mapstructdemo.service.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = CommonMappings.class)
 public interface EmployeeMapper {
 
     // To Application-layer from Domain-layer
@@ -14,6 +14,6 @@ public interface EmployeeMapper {
 
     // To Presentation-layer from Application-layer
     @Mapping(target = "seniority", source = "seniorityLevel.levelName")
-    @Mapping(target = "fullName", expression = "java(String.format(\"%s %s\", employee.getName(), employee.getSurname()))")
+    @Mapping(target = "fullName", expression = "java(commonMappings.mapFullName(employee.getName(), employee.getSurname()))")
     EmployeeResponse map(Employee employee);
 }
