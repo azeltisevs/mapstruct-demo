@@ -4,16 +4,16 @@ import com.mapstructdemo.controller.EmployeeResponse;
 import com.mapstructdemo.model.EmployeeEntity;
 import com.mapstructdemo.service.Employee;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
-
-    EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
     // To Application-layer from Domain-layer
     Employee map(EmployeeEntity entity);
 
     // To Presentation-layer from Application-layer
+    @Mapping(target = "seniority", source = "seniorityLevel.levelName")
+    @Mapping(target = "fullName", expression = "java(String.format(\"%s %s\", employee.getName(), employee.getSurname()))")
     EmployeeResponse map(Employee employee);
 }
