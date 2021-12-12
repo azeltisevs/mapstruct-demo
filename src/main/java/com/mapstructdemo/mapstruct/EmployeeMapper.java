@@ -17,5 +17,6 @@ public interface EmployeeMapper {
     @Mapping(target = "seniority", source = "seniorityLevel.levelName")
     @Mapping(target = "fullName", expression = "java(commonMappings.mapFullName(employee.getName(), employee.getSurname()))")
     @Mapping(target = "pictureUrl", source = "employee", qualifiedByName = "employeeToPictureUrl")
+    @Mapping(target = "hireDate", dateFormat = "yy MMM dd")
     EmployeeResponse map(Employee employee);
 }
